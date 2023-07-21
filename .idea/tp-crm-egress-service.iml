@@ -66,6 +66,7 @@
     <orderEntry type="library" name="Maven: org.springframework.integration:spring-integration-core:5.5.9" level="project" />
     <orderEntry type="library" name="Maven: io.projectreactor:reactor-core:3.4.15" level="project" />
     <orderEntry type="library" name="Maven: org.reactivestreams:reactive-streams:1.0.3" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework.integration:spring-integration-http:5.5.1" level="project" />
     <orderEntry type="library" name="Maven: org.apache.kafka:kafka-streams:3.0.0" level="project" />
     <orderEntry type="library" name="Maven: org.apache.kafka:kafka-clients:3.0.0" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Maven: com.github.luben:zstd-jni:1.5.0-2" level="project" />
