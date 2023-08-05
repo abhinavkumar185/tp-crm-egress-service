@@ -8,10 +8,10 @@
 		<version>2.6.4</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.ips.gateway</groupId>
+	<groupId>com.gateway</groupId>
 	<artifactId>crm</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>crm</name>
+	<name>tp-crm-egress-service</name>
 	<description>CRM gateway for syncing changed to </description>
 	<properties>
 		<java.version>1.8</java.version>
