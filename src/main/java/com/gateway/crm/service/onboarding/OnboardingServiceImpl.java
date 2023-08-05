@@ -10,6 +10,7 @@ import com.gateway.crm.dao.kyc.opportunitykycupload.entity.OpportunityKycUpload;
 import com.gateway.crm.dao.kyc.opportunityownerkyc.entity.OpportunityOwnerKyc;
 import com.gateway.crm.dao.operator.entity.Operator;
 import com.gateway.crm.dao.opportunity.entity.Opportunity;
+import com.gateway.crm.service.GatewayService;
 import com.gateway.crm.service.contract.ContractService;
 import com.gateway.crm.service.kyc.OpportunityKycService;
 import com.gateway.crm.service.kyc.OpportunityKycUploadService;
@@ -45,10 +46,15 @@ public class OnboardingServiceImpl implements OnboardingService{
     private final OpportunityKycService opportunityKycService;
     private final OpportunityKycUploadService opportunityKycUploadService;
     private final OpportunityOwnerKycService opportunityOwnerKycService;
+    private GatewayService gatewayService;
 
     @Autowired
     public OnboardingServiceImpl(OperatorService operatorService, OpportunityService opportunityService, OpportunitySyncLogService opportunitySyncLogService,
-                                 InvitationService invitationService, AcquiringGateway acquiringGateway, BankAccountService bankAccountService, AgreementPolicyService agreementPolicyService,ContractService contractService,OpportunityKycService opportunityKycService, OpportunityKycUploadService opportunityKycUploadService, OpportunityOwnerKycService opportunityOwnerKycService) {
+                                 InvitationService invitationService, AcquiringGateway acquiringGateway,
+                                 BankAccountService bankAccountService, AgreementPolicyService agreementPolicyService,
+                                 ContractService contractService,OpportunityKycService opportunityKycService,
+                                 OpportunityKycUploadService opportunityKycUploadService, OpportunityOwnerKycService opportunityOwnerKycService,
+                                 GatewayService gatewayService) {
         this.operatorService = operatorService;
         this.opportunityService = opportunityService;
         this.opportunitySyncLogService = opportunitySyncLogService;
@@ -60,6 +66,7 @@ public class OnboardingServiceImpl implements OnboardingService{
         this.opportunityKycUploadService = opportunityKycUploadService;
         this.opportunityOwnerKycService = opportunityOwnerKycService;
         this.contractService = contractService;
+        this.gatewayService = gatewayService;
     }
 
     @Override
@@ -104,7 +111,8 @@ public class OnboardingServiceImpl implements OnboardingService{
                         .build();
             }
             log.error("event objectMapper json : "+ objectMapper.writeValueAsString(event));
-            acquiringGateway.sendMessage(objectMapper.writeValueAsString(event));
+            //acquiringGateway.sendMessage(objectMapper.writeValueAsString(event));
+            gatewayService.process(event);
             log.error("opportunitySyncLogService start : "+ onboardingEventDto.getId());
             opportunitySyncLogService.updateById(onboardingEventDto.getId());
             log.error("opportunitySyncLogService updated as done : "+ onboardingEventDto.getId());

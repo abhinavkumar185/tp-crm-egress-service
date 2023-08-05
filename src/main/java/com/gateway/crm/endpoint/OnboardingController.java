@@ -22,7 +22,7 @@ public class OnboardingController {
         this.onboardingService = onboardingService;
     }
 
-    @PostMapping(path = "/v1/sync", produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(path = "/process", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
     public String process(@Valid @RequestBody OnboardingEvent event) {
         onboardingService.createOpportunityOnboardedEventData(event);
