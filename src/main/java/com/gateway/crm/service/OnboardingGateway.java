@@ -1,6 +1,7 @@
 package com.gateway.crm.service;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import com.gateway.crm.config.ApplicationProperties;
 import com.gateway.crm.error.Error;
 import com.gateway.crm.error.ServiceException;
 import com.gateway.crm.service.dto.RequestData;
@@ -21,13 +22,15 @@ public class OnboardingGateway {
     @Autowired
     private RestTemplate restTemplate;
 
+    @Autowired
+    private ApplicationProperties applicationProperties;
+
     public JsonNode exchange(String operation, HttpMethod method, RequestData requestData){
         try{
             String encrypted = "";
             log.info("PLAIN PAYLOAD : {}, \n ENCRYPTED PAYLOAD : {}",requestData.getPayload(), encrypted);
-
-            //String url = applicationProperties.getIngressEndpoint()+requestData.getEndPoint();
-            String url = "http://10.0.30.166:9042"+requestData.getEndPoint();
+            String url = applicationProperties.getIngressEndpoint()+requestData.getEndPoint();
+            //String url = "http://10.0.30.166:9042"+requestData.getEndPoint();
             HttpEntity<String> entity = new HttpEntity<>(encrypted, requestData.getHeader());
             ResponseEntity<?> result = restTemplate
                     .exchange(url,method, entity, String.class );
