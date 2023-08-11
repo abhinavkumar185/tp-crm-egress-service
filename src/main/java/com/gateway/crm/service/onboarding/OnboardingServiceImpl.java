@@ -20,7 +20,7 @@ import com.gateway.crm.service.onboarding.dto.OnboardingEvent;
 import com.gateway.crm.service.onboarding.dto.OnboardingEventDto;
 import com.gateway.crm.service.opportunity.OpportunityService;
 import com.gateway.crm.service.opportunitySyncLog.opportunity.OpportunitySyncLogService;
-import com.gateway.crm.service.ws.AcquiringGateway;
+//import com.gateway.crm.service.ws.AcquiringGateway;
 import com.gateway.crm.service.agreement.AgreementPolicyService;
 import com.gateway.crm.service.bankAccount.BankAccountService;
 import com.gateway.crm.service.invitation.InvitationService;
@@ -39,7 +39,7 @@ public class OnboardingServiceImpl implements OnboardingService{
     private final OpportunityService opportunityService;
     private final OpportunitySyncLogService opportunitySyncLogService;
     private final InvitationService invitationService;
-    private final AcquiringGateway acquiringGateway;
+   // private final AcquiringGateway acquiringGateway;
     private final BankAccountService bankAccountService;
     private final AgreementPolicyService agreementPolicyService;
     private final ContractService contractService;
@@ -50,7 +50,7 @@ public class OnboardingServiceImpl implements OnboardingService{
 
     @Autowired
     public OnboardingServiceImpl(OperatorService operatorService, OpportunityService opportunityService, OpportunitySyncLogService opportunitySyncLogService,
-                                 InvitationService invitationService, AcquiringGateway acquiringGateway,
+                                 InvitationService invitationService,
                                  BankAccountService bankAccountService, AgreementPolicyService agreementPolicyService,
                                  ContractService contractService,OpportunityKycService opportunityKycService,
                                  OpportunityKycUploadService opportunityKycUploadService, OpportunityOwnerKycService opportunityOwnerKycService,
@@ -59,7 +59,6 @@ public class OnboardingServiceImpl implements OnboardingService{
         this.opportunityService = opportunityService;
         this.opportunitySyncLogService = opportunitySyncLogService;
         this.invitationService = invitationService;
-        this.acquiringGateway = acquiringGateway;
         this.bankAccountService = bankAccountService;
         this.agreementPolicyService = agreementPolicyService;
         this.opportunityKycService = opportunityKycService;
