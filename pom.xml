@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.gateway</groupId>
-	<artifactId>crm</artifactId>
+	<artifactId>tp-crm-egress-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>tp-crm-egress-service</name>
 	<description>CRM gateway for syncing changed to </description>
