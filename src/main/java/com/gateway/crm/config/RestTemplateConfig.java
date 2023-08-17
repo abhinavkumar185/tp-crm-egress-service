@@ -38,11 +38,11 @@ public class RestTemplateConfig {
 //        }
         try{
             KeyStore clientStore = KeyStore.getInstance("PKCS12");
-            clientStore.load(new FileInputStream(env.getProperty("keyStorePath")), 
-                    env.getProperty("keyStorePassword").toCharArray());
+            /*clientStore.load(new FileInputStream(env.getProperty("keyStorePath")),
+                    env.getProperty("keyStorePassword").toCharArray());*/
 
             SSLContext sslContext = SSLContextBuilder.create()
-                    .loadKeyMaterial(clientStore, env.getProperty("keyStorePassword").toCharArray())
+//                    .loadKeyMaterial(clientStore, env.getProperty("keyStorePassword").toCharArray())
 //                .setProtocol(properties.getProtocol())
                     .loadTrustMaterial(new TrustSelfSignedStrategy())
                     .build();

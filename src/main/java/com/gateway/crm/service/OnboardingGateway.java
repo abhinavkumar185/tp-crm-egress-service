@@ -8,6 +8,7 @@ import com.gateway.crm.service.dto.RequestData;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
@@ -23,13 +24,13 @@ public class OnboardingGateway {
     private RestTemplate restTemplate;
 
     @Autowired
-    private ApplicationProperties applicationProperties;
+    private Environment env;
 
     public JsonNode exchange(String operation, HttpMethod method, RequestData requestData){
         try{
             String encrypted = "";
             log.info("PLAIN PAYLOAD : {}, \n ENCRYPTED PAYLOAD : {}",requestData.getPayload(), encrypted);
-            String url = applicationProperties.getIngressEndpoint()+requestData.getEndPoint();
+            String url = env.getProperty("ingressEndpoint")+requestData.getEndPoint();
             //String url = "http://10.0.30.166:9042"+requestData.getEndPoint();
             HttpEntity<String> entity = new HttpEntity<>(encrypted, requestData.getHeader());
             ResponseEntity<?> result = restTemplate

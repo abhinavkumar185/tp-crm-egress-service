@@ -1,9 +1,0 @@
-<changelist name="Uncommitted_changes_before_Update_at_02-08-2023_11_54_[Changes]" date="1690957510148" recycled="true" deleted="true">
-  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_02-08-2023_11_54_[Changes]/shelved.patch" />
-  <option name="DESCRIPTION" value="Uncommitted changes before Update at 02-08-2023 11:54 [Changes]" />
-  <binary>
-    <option name="BEFORE_PATH" />
-    <option name="AFTER_PATH" value="logs/2023-07-27/application-2023-07-27.0.log.gz" />
-    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_02-08-2023_11_54_[Changes]/application-2023-07-27.0.log.gz" />
-  </binary>
-</changelist>
