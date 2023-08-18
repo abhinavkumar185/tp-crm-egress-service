@@ -24,7 +24,6 @@ public class CrmApplication implements WebMvcConfigurer {
 	private static final Logger log = LoggerFactory.getLogger(CrmApplication.class);
 
 	public static void main(String[] args) {
-//		SpringApplication.run(AxisApplication.class, args);
 		SpringApplication app = new SpringApplication(CrmApplication.class);
 		Environment env = app.run(args).getEnvironment();
 		logApplicationStartup(env);
