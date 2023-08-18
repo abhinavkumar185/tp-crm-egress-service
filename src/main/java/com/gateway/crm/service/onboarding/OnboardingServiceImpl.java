@@ -71,7 +71,9 @@ public class OnboardingServiceImpl implements OnboardingService{
     @Override
     public void createOpportunityOnboardedEventData(OnboardingEvent onboardingEvent) {
         try {
-            log.info("createOpportunityOnboardedEventData event start -> " + onboardingEvent);
+            log.info("createOpportunityOnboardedEventData old event -> " + onboardingEvent.getOldEvent());
+            log.info("createOpportunityOnboardedEventData new event -> " + onboardingEvent.getNewEvent());
+            log.info("createOpportunityOnboardedEventData type -> " + onboardingEvent.getActionType());
             BusinessEvent event = null;
             ObjectMapper objectMapper = new ObjectMapper();
             OnboardingEventDto onboardingEventDto = objectMapper.readValue(onboardingEvent.getNewEvent().toString(), OnboardingEventDto.class);
@@ -117,7 +119,7 @@ public class OnboardingServiceImpl implements OnboardingService{
             log.error("opportunitySyncLogService updated as done : "+ onboardingEventDto.getId());
         }
         catch (Exception e){
-            log.error("Error while creating the onboarding object with event data :: {}", onboardingEvent.getNewEvent().toString());
+            log.error("Error while creating the onboarding object with event data :: {}", onboardingEvent.getNewEvent());
             log.error("Error while creating the onboarding object with exception",e);
         }
     }

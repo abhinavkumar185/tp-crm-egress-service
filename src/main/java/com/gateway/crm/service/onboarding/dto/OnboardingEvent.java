@@ -2,7 +2,6 @@ package com.gateway.crm.service.onboarding.dto;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import lombok.Getter;
-import org.springframework.context.ApplicationEvent;
 
 @Getter
 public class OnboardingEvent {
@@ -14,12 +13,5 @@ public class OnboardingEvent {
         this.oldEvent = (JsonNode) oldEvent;
         this.newEvent = (JsonNode) newEvent;
         this.actionType = actionType;
-    }
-
-    @Override
-    public String toString() {
-        return "OnboardingEvent{" +
-                "oldEvent=" + oldEvent +
-                '}';
     }
 }

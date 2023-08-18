@@ -2,6 +2,7 @@ package com.gateway.crm.endpoint;
 
 import com.gateway.crm.service.onboarding.OnboardingService;
 import com.gateway.crm.service.onboarding.dto.OnboardingEvent;
+import lombok.extern.log4j.Log4j2;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,8 +14,9 @@ import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/v1/sync")
+@Log4j2
 public class OnboardingController {
-    private static final Logger logger = LoggerFactory.getLogger(OnboardingController.class);
+    //private static final Logger logger = LoggerFactory.getLogger(OnboardingController.class);
     private OnboardingService onboardingService;
 
     @Autowired
@@ -24,7 +26,7 @@ public class OnboardingController {
 
     @PostMapping(path = "/process", produces = MediaType.APPLICATION_JSON_VALUE)
     public String process(OnboardingEvent event) {
-        logger.debug("process start : " + event);
+        log.debug("process start : " + event);
         onboardingService.createOpportunityOnboardedEventData(event);
         return "Success";
     }
