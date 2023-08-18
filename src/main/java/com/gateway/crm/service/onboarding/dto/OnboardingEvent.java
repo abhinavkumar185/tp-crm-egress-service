@@ -1,17 +1,20 @@
 package com.gateway.crm.service.onboarding.dto;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import lombok.Getter;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
+import lombok.*;
 
-@Getter
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder(toBuilder = true)
+@JsonDeserialize(builder = OnboardingEvent.OnboardingEventBuilder.class)
 public class OnboardingEvent {
+    @JsonPOJOBuilder(withPrefix = "")
+    public static class OnboardingEventBuilder {}
+
     private JsonNode oldEvent;
     private JsonNode newEvent;
     private String actionType;
-
-    public OnboardingEvent(Object oldEvent, Object newEvent, String actionType) {
-        this.oldEvent = (JsonNode) oldEvent;
-        this.newEvent = (JsonNode) newEvent;
-        this.actionType = actionType;
-    }
 }

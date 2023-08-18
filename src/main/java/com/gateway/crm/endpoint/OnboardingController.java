@@ -19,11 +19,6 @@ public class OnboardingController {
     //private static final Logger logger = LoggerFactory.getLogger(OnboardingController.class);
     private OnboardingService onboardingService;
 
-    @Autowired
-    public OnboardingController(OnboardingService onboardingService) {
-        this.onboardingService = onboardingService;
-    }
-
     @PostMapping(path = "/process", produces = MediaType.APPLICATION_JSON_VALUE)
     public String process(OnboardingEvent event) {
         log.debug("process start : " + event);

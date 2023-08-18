@@ -6,9 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="9f30ceec-f55c-4ce8-8457-ed815d4cb19f" name="Changes" comment="adding Sync route in project">
       <change afterPath="$PROJECT_DIR$/logs/2023-08-17/application-2023-08-17.0.log.gz" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gateway/crm/endpoint/OnboardingController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gateway/crm/endpoint/OnboardingController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gateway/crm/service/onboarding/OnboardingServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gateway/crm/service/onboarding/OnboardingServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gateway/crm/service/onboarding/dto/OnboardingEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gateway/crm/service/onboarding/dto/OnboardingEvent.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
