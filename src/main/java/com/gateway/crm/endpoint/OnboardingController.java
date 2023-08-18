@@ -23,8 +23,8 @@ public class OnboardingController {
     }
 
     @PostMapping(path = "/process", produces = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseStatus(HttpStatus.CREATED)
-    public String process(@Valid @RequestBody OnboardingEvent event) {
+    public String process(OnboardingEvent event) {
+        logger.debug("process start : " + event);
         onboardingService.createOpportunityOnboardedEventData(event);
         return "Success";
     }
