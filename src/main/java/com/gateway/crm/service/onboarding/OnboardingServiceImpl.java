@@ -113,7 +113,7 @@ public class OnboardingServiceImpl implements OnboardingService{
             }
             log.error("event objectMapper json : "+ objectMapper.writeValueAsString(event));
             //acquiringGateway.sendMessage(objectMapper.writeValueAsString(event));
-            Integer statusCode = gatewayService.process(event);
+            int statusCode = gatewayService.process(event);
             log.error("statusCode : " + statusCode);
             if(statusCode == 200) {
                 log.error("opportunitySyncLogService start : " + onboardingEventDto.getId());

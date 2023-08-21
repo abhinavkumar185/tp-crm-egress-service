@@ -20,7 +20,7 @@ public class GatewayService {
     @Autowired
     OnboardingGateway onboardingGateway;
 
-    public Integer process(BusinessEvent event){
+    public int process(BusinessEvent event){
         log.error("process start : "+event);
         //ObjectNode requestPayload = new ObjectMapper().createObjectNode();
         ObjectMapper mapper = new ObjectMapper();
@@ -33,7 +33,7 @@ public class GatewayService {
                 addHeaders(new HashMap<>()),
                 eventNode);
         log.error("requestData values : "+requestData);
-        Integer statusCode = onboardingGateway.exchange("post-operation", HttpMethod.POST, requestData);
+        int statusCode = onboardingGateway.exchange("post-operation", HttpMethod.POST, requestData);
 
         return statusCode;
     }

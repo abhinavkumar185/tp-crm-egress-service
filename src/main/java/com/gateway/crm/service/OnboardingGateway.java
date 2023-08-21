@@ -25,9 +25,10 @@ public class OnboardingGateway {
     @Autowired
     private Environment env;
 
-    public Integer exchange(String operation, HttpMethod method, RequestData requestData){
+    public int exchange(String operation, HttpMethod method, RequestData requestData){
         log.error("exchange start : " + operation);
         ResponseEntity<?> result = null;
+        int returnValue = -1;
         try{
             String encrypted = "";
             log.error("PLAIN PAYLOAD : " +requestData.getPayload() + " : ingressEndpoint URL : " + env.getProperty("ingressEndpoint"));
@@ -59,14 +60,14 @@ public class OnboardingGateway {
             if(!result.hasBody())
                 throw new ServiceException(operation, Error.BANK_SESSION_EXPIRED);
 
-            return result.getStatusCode().value();
-
+            returnValue = result.getStatusCode().value();
+            log.error("returnValue : "+returnValue);
         }
         catch (Exception e){
             log.error("Exception in OnboardingGateway : ", e);
             //throw new ServiceException(operation, Error.SERVER_ERROR);
         }
-        return null;
+        return returnValue;
     }
 
 }
