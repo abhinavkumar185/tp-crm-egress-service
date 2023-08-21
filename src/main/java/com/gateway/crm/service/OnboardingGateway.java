@@ -30,11 +30,11 @@ public class OnboardingGateway {
         ResponseEntity<?> result = null;
         try{
             String encrypted = "";
-            log.error("PLAIN PAYLOAD : ",requestData.getPayload() + " : ingressEndpoint URL : " + env.getProperty("ingressEndpoint"));
+            log.error("PLAIN PAYLOAD : " +requestData.getPayload() + " : ingressEndpoint URL : " + env.getProperty("ingressEndpoint"));
             String url = env.getProperty("ingressEndpoint")+requestData.getEndPoint();
             //String url = "http://10.0.30.166:9042"+requestData.getEndPoint();
             HttpEntity<String> entity = new HttpEntity<>(encrypted, requestData.getHeader());
-            log.error("URL : ",url + " : method : " + method + " : entity : " + entity);
+            log.error("URL : "+url + " : method : " + method + " : entity : " + entity);
             result = restTemplate
                     .exchange(url,method, entity, String.class );
 
