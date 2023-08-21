@@ -23,7 +23,9 @@ public class GatewayService {
 
     public JsonNode process(BusinessEvent event){
         ObjectNode requestPayload = new ObjectMapper().createObjectNode();
-        //requestPayload.set("Data",event);
+        ObjectMapper mapper = new ObjectMapper();
+        JsonNode eventNode = mapper.convertValue(event, JsonNode.class);
+        requestPayload.set("Data",eventNode);
         requestPayload.set("Risk",new ObjectMapper().createObjectNode());
         requestPayload.set("Links",new ObjectMapper().createObjectNode());
         requestPayload.set("Meta",new ObjectMapper().createObjectNode());
