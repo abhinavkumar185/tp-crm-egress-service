@@ -26,9 +26,9 @@ public class GatewayService {
         ObjectMapper mapper = new ObjectMapper();
         JsonNode eventNode = mapper.convertValue(event, JsonNode.class);
         requestPayload.set("Data",eventNode);
-        requestPayload.set("Risk",new ObjectMapper().createObjectNode());
+        /*requestPayload.set("Risk",new ObjectMapper().createObjectNode());
         requestPayload.set("Links",new ObjectMapper().createObjectNode());
-        requestPayload.set("Meta",new ObjectMapper().createObjectNode());
+        requestPayload.set("Meta",new ObjectMapper().createObjectNode());*/
         RequestData requestData = RequestData.build("/sync/details",
                 addHeaders(new HashMap<>()),
                 requestPayload);
@@ -43,7 +43,7 @@ public class GatewayService {
     public Map<String,String> addHeaders(Map<String,String> requestHeaders){
         requestHeaders.put("x-fapi-epoch-millis",String.valueOf(System.currentTimeMillis()));
         requestHeaders.put("x-fapi-serviceVersion","1.0");
-        requestHeaders.put("Content-Type","text/plain");
+        requestHeaders.put("Content-Type","application/json");
         return requestHeaders;
     }
 
