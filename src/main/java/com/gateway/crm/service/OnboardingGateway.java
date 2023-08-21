@@ -1,7 +1,6 @@
 package com.gateway.crm.service;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import com.gateway.crm.config.ApplicationProperties;
 import com.gateway.crm.error.Error;
 import com.gateway.crm.error.ServiceException;
 import com.gateway.crm.service.dto.RequestData;

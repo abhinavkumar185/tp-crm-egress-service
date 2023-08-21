@@ -11,8 +11,8 @@ import javax.validation.constraints.NotNull;
 @Validated
 public class ApplicationProperties {
 
-    @NotNull
-    private String ingressEndpoint;
+    /*@NotNull
+    private String ingressEndpoint;*/
 
 
 }
