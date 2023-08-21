@@ -113,10 +113,13 @@ public class OnboardingServiceImpl implements OnboardingService{
             }
             log.error("event objectMapper json : "+ objectMapper.writeValueAsString(event));
             //acquiringGateway.sendMessage(objectMapper.writeValueAsString(event));
-            gatewayService.process(event);
-            log.error("opportunitySyncLogService start : "+ onboardingEventDto.getId());
-            opportunitySyncLogService.updateById(onboardingEventDto.getId());
-            log.error("opportunitySyncLogService updated as done : "+ onboardingEventDto.getId());
+            Integer statusCode = gatewayService.process(event);
+            log.error("statusCode : " + statusCode);
+            if(statusCode == 200) {
+                log.error("opportunitySyncLogService start : " + onboardingEventDto.getId());
+                opportunitySyncLogService.updateById(onboardingEventDto.getId());
+                log.error("opportunitySyncLogService updated as done : " + onboardingEventDto.getId());
+            }
         }
         catch (Exception e){
             log.error("Error while creating the onboarding object with event data :: {}", onboardingEvent.getNewEvent());

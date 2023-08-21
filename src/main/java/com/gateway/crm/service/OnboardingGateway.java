@@ -25,7 +25,7 @@ public class OnboardingGateway {
     @Autowired
     private Environment env;
 
-    public JsonNode exchange(String operation, HttpMethod method, RequestData requestData){
+    public Integer exchange(String operation, HttpMethod method, RequestData requestData){
         log.error("exchange start : " + operation);
         ResponseEntity<?> result = null;
         try{
@@ -59,7 +59,7 @@ public class OnboardingGateway {
             if(!result.hasBody())
                 throw new ServiceException(operation, Error.BANK_SESSION_EXPIRED);
 
-            return (JsonNode) result.getBody();
+            return result.getStatusCode().value();
 
         }
         catch (Exception e){
