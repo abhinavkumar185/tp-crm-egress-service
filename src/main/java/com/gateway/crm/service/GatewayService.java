@@ -32,6 +32,7 @@ public class GatewayService {
         RequestData requestData = RequestData.build("/sync/details",
                 addHeaders(new HashMap<>()),
                 requestPayload);
+        log.debug("requestData values : "+requestData);
         JsonNode jsonNode = onboardingGateway.exchange("post-operation", HttpMethod.POST, requestData);
 
         return jsonNode;

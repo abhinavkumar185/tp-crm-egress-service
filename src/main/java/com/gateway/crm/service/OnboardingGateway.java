@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.gateway.crm.error.Error;
 import com.gateway.crm.error.ServiceException;
 import com.gateway.crm.service.dto.RequestData;
+import lombok.extern.log4j.Log4j2;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,9 +16,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 @Service
+@Log4j2
 public class OnboardingGateway {
-
-    private static final Logger log = LoggerFactory.getLogger(OnboardingGateway.class);
 
     @Autowired
     private RestTemplate restTemplate;
@@ -26,6 +26,7 @@ public class OnboardingGateway {
     private Environment env;
 
     public JsonNode exchange(String operation, HttpMethod method, RequestData requestData){
+        log.debug("exchange start : " + operation);
         try{
             String encrypted = "";
             log.debug("PLAIN PAYLOAD : ",requestData.getPayload() + " : ingressEndpoint URL : " + env.getProperty("ingressEndpoint"));
