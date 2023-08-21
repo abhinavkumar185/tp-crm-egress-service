@@ -57,9 +57,6 @@ public class OnboardingGateway {
                 throw new ServiceException(operation, Error.SERVER_ERROR);
             }
 
-            if(!result.hasBody())
-                throw new ServiceException(operation, Error.BANK_SESSION_EXPIRED);
-
             returnValue = result.getStatusCode().value();
             log.error("returnValue : "+returnValue);
         }
