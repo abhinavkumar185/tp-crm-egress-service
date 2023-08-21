@@ -26,20 +26,20 @@ public class OnboardingGateway {
     private Environment env;
 
     public JsonNode exchange(String operation, HttpMethod method, RequestData requestData){
-        log.debug("exchange start : " + operation);
+        log.error("exchange start : " + operation);
         ResponseEntity<?> result = null;
         try{
             String encrypted = "";
-            log.debug("PLAIN PAYLOAD : ",requestData.getPayload() + " : ingressEndpoint URL : " + env.getProperty("ingressEndpoint"));
+            log.error("PLAIN PAYLOAD : ",requestData.getPayload() + " : ingressEndpoint URL : " + env.getProperty("ingressEndpoint"));
             String url = env.getProperty("ingressEndpoint")+requestData.getEndPoint();
             //String url = "http://10.0.30.166:9042"+requestData.getEndPoint();
             HttpEntity<String> entity = new HttpEntity<>(encrypted, requestData.getHeader());
-            log.debug("URL : ",url + " : method : " + method + " : entity : " + entity);
+            log.error("URL : ",url + " : method : " + method + " : entity : " + entity);
             result = restTemplate
                     .exchange(url,method, entity, String.class );
 
-            log.debug("result : " + result);
-            log.debug("============================ HTTP Response Begin ============================\n" +
+            log.error("result : " + result);
+            log.error("============================ HTTP Response Begin ============================\n" +
                             "Status code  : " + result.getStatusCode().value() + "\n" +
                             "Status text  : " + result.getStatusCode().getReasonPhrase() + "\n" +
                             "Headers      : " + result.getHeaders() + "\n" +
@@ -63,7 +63,7 @@ public class OnboardingGateway {
 
         }
         catch (Exception e){
-            log.debug("Exception in OnboardingGateway : ", e);
+            log.error("Exception in OnboardingGateway : ", e);
             //throw new ServiceException(operation, Error.SERVER_ERROR);
         }
         return null;

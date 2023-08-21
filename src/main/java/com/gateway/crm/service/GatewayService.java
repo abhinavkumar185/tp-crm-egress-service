@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.gateway.crm.service.dto.RequestData;
 import com.gateway.crm.service.onboarding.dto.BusinessEvent;
+import lombok.extern.log4j.Log4j2;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,14 +15,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Service
+@Log4j2
 public class GatewayService {
-    private static final Logger log = LoggerFactory.getLogger(GatewayService.class);
-
     @Autowired
     OnboardingGateway onboardingGateway;
 
-
     public JsonNode process(BusinessEvent event){
+        log.error("process start : "+event);
         ObjectNode requestPayload = new ObjectMapper().createObjectNode();
         ObjectMapper mapper = new ObjectMapper();
         JsonNode eventNode = mapper.convertValue(event, JsonNode.class);
@@ -32,7 +32,7 @@ public class GatewayService {
         RequestData requestData = RequestData.build("/sync/details",
                 addHeaders(new HashMap<>()),
                 requestPayload);
-        log.debug("requestData values : "+requestData);
+        log.error("requestData values : "+requestData);
         JsonNode jsonNode = onboardingGateway.exchange("post-operation", HttpMethod.POST, requestData);
 
         return jsonNode;
