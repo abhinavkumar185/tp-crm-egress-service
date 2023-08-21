@@ -29,14 +29,16 @@ public class OnboardingGateway {
     public JsonNode exchange(String operation, HttpMethod method, RequestData requestData){
         try{
             String encrypted = "";
-            log.info("PLAIN PAYLOAD : {}, \n ENCRYPTED PAYLOAD : {}",requestData.getPayload(), encrypted);
+            log.debug("PLAIN PAYLOAD : ",requestData.getPayload() + " : ingressEndpoint URL : " + env.getProperty("ingressEndpoint"));
             String url = env.getProperty("ingressEndpoint")+requestData.getEndPoint();
             //String url = "http://10.0.30.166:9042"+requestData.getEndPoint();
             HttpEntity<String> entity = new HttpEntity<>(encrypted, requestData.getHeader());
+            log.debug("URL : ",url + " : method : " + method + " : entity : " + entity);
             ResponseEntity<?> result = restTemplate
                     .exchange(url,method, entity, String.class );
 
-            log.info("============================ HTTP Response Begin ============================\n" +
+            log.debug("result : " + result);
+            log.debug("============================ HTTP Response Begin ============================\n" +
                             "Status code  : " + result.getStatusCode().value() + "\n" +
                             "Status text  : " + result.getStatusCode().getReasonPhrase() + "\n" +
                             "Headers      : " + result.getHeaders() + "\n" +
@@ -47,7 +49,7 @@ public class OnboardingGateway {
             if(!result.getStatusCode().is2xxSuccessful()){
                 if(result.hasBody()){
                     JsonNode node = null;
-                    log.error("Call to axis gateway failed : UID - {} : URI - {} : RESPONSE : {}",
+                    log.error("Call to crm ingress gateway failed : UID - {} : URI - {} : RESPONSE : {}",
                             requestData.getHeader().get("x-fapi-uuid").toString(),requestData.getURI(), node);
                 }
                 throw new ServiceException(operation, Error.SERVER_ERROR);
@@ -56,10 +58,11 @@ public class OnboardingGateway {
             if(!result.hasBody())
                 throw new ServiceException(operation, Error.BANK_SESSION_EXPIRED);
 
-            //return jwe.decryptResponseBody(operation, (String)result.getBody());
-            return null;
+            return (JsonNode) result.getBody();
+
         }
         catch (Exception e){
+            log.debug("Exception in OnboardingGateway : ", e);
             throw new ServiceException(operation, Error.SERVER_ERROR);
         }
     }
