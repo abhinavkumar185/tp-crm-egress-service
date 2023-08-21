@@ -1,5 +1,6 @@
 package com.gateway.crm.endpoint;
 
+import com.gateway.crm.service.GatewayService;
 import com.gateway.crm.service.onboarding.OnboardingService;
 import com.gateway.crm.service.onboarding.dto.OnboardingEvent;
 import lombok.extern.log4j.Log4j2;
@@ -19,8 +20,13 @@ public class OnboardingController {
     //private static final Logger logger = LoggerFactory.getLogger(OnboardingController.class);
     private OnboardingService onboardingService;
 
+    @Autowired
+    public OnboardingController(OnboardingService onboardingService) {
+        this.onboardingService = onboardingService;
+    }
+
     @PostMapping(path = "/process", produces = MediaType.APPLICATION_JSON_VALUE)
-    public String process(OnboardingEvent event) {
+    public String process(@RequestBody OnboardingEvent event) {
         log.debug("process start : " + event);
         onboardingService.createOpportunityOnboardedEventData(event);
         return "Success";
