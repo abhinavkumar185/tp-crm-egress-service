@@ -34,6 +34,7 @@ public class OnboardingGateway {
             String url = env.getProperty("ingressEndpoint")+requestData.getEndPoint();
             //String url = "http://10.0.30.166:9042"+requestData.getEndPoint();
             HttpEntity<String> entity = new HttpEntity<>(requestData.getHeader());
+
             log.error("URL : "+url + " : method : " + method + " : entity : " + entity);
             result = restTemplate
                     .exchange(url,method, entity, String.class );

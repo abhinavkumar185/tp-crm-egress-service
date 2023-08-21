@@ -22,16 +22,16 @@ public class GatewayService {
 
     public JsonNode process(BusinessEvent event){
         log.error("process start : "+event);
-        ObjectNode requestPayload = new ObjectMapper().createObjectNode();
+        //ObjectNode requestPayload = new ObjectMapper().createObjectNode();
         ObjectMapper mapper = new ObjectMapper();
         JsonNode eventNode = mapper.convertValue(event, JsonNode.class);
-        requestPayload.set("Data",eventNode);
+       // requestPayload.set("Data",eventNode);
         /*requestPayload.set("Risk",new ObjectMapper().createObjectNode());
         requestPayload.set("Links",new ObjectMapper().createObjectNode());
         requestPayload.set("Meta",new ObjectMapper().createObjectNode());*/
         RequestData requestData = RequestData.build("/sync/details",
                 addHeaders(new HashMap<>()),
-                requestPayload);
+                eventNode);
         log.error("requestData values : "+requestData);
         JsonNode jsonNode = onboardingGateway.exchange("post-operation", HttpMethod.POST, requestData);
 
