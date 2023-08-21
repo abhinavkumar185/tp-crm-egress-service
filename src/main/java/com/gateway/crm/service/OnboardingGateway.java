@@ -27,6 +27,7 @@ public class OnboardingGateway {
 
     public JsonNode exchange(String operation, HttpMethod method, RequestData requestData){
         log.debug("exchange start : " + operation);
+        ResponseEntity<?> result = null;
         try{
             String encrypted = "";
             log.debug("PLAIN PAYLOAD : ",requestData.getPayload() + " : ingressEndpoint URL : " + env.getProperty("ingressEndpoint"));
@@ -34,7 +35,7 @@ public class OnboardingGateway {
             //String url = "http://10.0.30.166:9042"+requestData.getEndPoint();
             HttpEntity<String> entity = new HttpEntity<>(encrypted, requestData.getHeader());
             log.debug("URL : ",url + " : method : " + method + " : entity : " + entity);
-            ResponseEntity<?> result = restTemplate
+            result = restTemplate
                     .exchange(url,method, entity, String.class );
 
             log.debug("result : " + result);
@@ -63,8 +64,9 @@ public class OnboardingGateway {
         }
         catch (Exception e){
             log.debug("Exception in OnboardingGateway : ", e);
-            throw new ServiceException(operation, Error.SERVER_ERROR);
+            //throw new ServiceException(operation, Error.SERVER_ERROR);
         }
+        return null;
     }
 
 }
