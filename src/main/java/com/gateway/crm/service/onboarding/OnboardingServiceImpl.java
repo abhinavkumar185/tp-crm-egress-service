@@ -8,6 +8,7 @@ import com.gateway.crm.dao.invitation.entity.Invitation;
 import com.gateway.crm.dao.kyc.opportunitykyc.entity.OpportunityKyc;
 import com.gateway.crm.dao.kyc.opportunitykycupload.entity.OpportunityKycUpload;
 import com.gateway.crm.dao.kyc.opportunityownerkyc.entity.OpportunityOwnerKyc;
+import com.gateway.crm.dao.quickcash.entity.QuickCashApplicationDetail;
 import com.gateway.crm.dao.operator.entity.Operator;
 import com.gateway.crm.dao.opportunity.entity.Opportunity;
 import com.gateway.crm.service.GatewayService;
@@ -25,6 +26,7 @@ import com.gateway.crm.service.agreement.AgreementPolicyService;
 import com.gateway.crm.service.bankAccount.BankAccountService;
 import com.gateway.crm.service.invitation.InvitationService;
 import com.gateway.crm.service.operator.OperatorService;
+import com.gateway.crm.service.quickcash.QuickCashService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -46,15 +48,16 @@ public class OnboardingServiceImpl implements OnboardingService{
     private final OpportunityKycService opportunityKycService;
     private final OpportunityKycUploadService opportunityKycUploadService;
     private final OpportunityOwnerKycService opportunityOwnerKycService;
+    private final QuickCashService quickCashService;
     private GatewayService gatewayService;
 
     @Autowired
     public OnboardingServiceImpl(OperatorService operatorService, OpportunityService opportunityService, OpportunitySyncLogService opportunitySyncLogService,
                                  InvitationService invitationService,
                                  BankAccountService bankAccountService, AgreementPolicyService agreementPolicyService,
-                                 ContractService contractService,OpportunityKycService opportunityKycService,
+                                 ContractService contractService, OpportunityKycService opportunityKycService,
                                  OpportunityKycUploadService opportunityKycUploadService, OpportunityOwnerKycService opportunityOwnerKycService,
-                                 GatewayService gatewayService) {
+                                 QuickCashService quickCashService, GatewayService gatewayService) {
         this.operatorService = operatorService;
         this.opportunityService = opportunityService;
         this.opportunitySyncLogService = opportunitySyncLogService;
@@ -65,6 +68,7 @@ public class OnboardingServiceImpl implements OnboardingService{
         this.opportunityKycUploadService = opportunityKycUploadService;
         this.opportunityOwnerKycService = opportunityOwnerKycService;
         this.contractService = contractService;
+        this.quickCashService = quickCashService;
         this.gatewayService = gatewayService;
     }
 
@@ -90,6 +94,11 @@ public class OnboardingServiceImpl implements OnboardingService{
                 List<OpportunityKycUpload> opportunityKycUploadList = opportunityKycUploadService.findByOpportunityId(onboardingEventDto.getOpportunity_id());
                 List<OpportunityOwnerKyc> opportunityOwnerKycList = opportunityOwnerKycService.findByOpportunityId(onboardingEventDto.getOpportunity_id());
                 //operator.setUid();
+
+                //populated quick cash data
+                List<QuickCashApplicationDetail> quickCashApplicationDetails = quickCashService.findByOpportunityId(onboardingEventDto.getOpportunity_id());
+
+
 
                 event = BusinessEvent.builder()
                         .invitation(invitation)
