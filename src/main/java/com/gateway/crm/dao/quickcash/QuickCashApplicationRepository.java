@@ -7,7 +7,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
 import org.springframework.stereotype.Repository;
 
-import javax.activation.DataSource;
+import javax.sql.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
@@ -34,7 +34,7 @@ public class QuickCashApplicationRepository extends JdbcDaoSupport {
                 "LEFT JOIN quick_cash_application_status qcs on qcs.quick_cash_application_id = qc.id \n" +
                 "LEFT JOIN address ca on ca.id = qc.current_address_id\n" +
                 "LEFT JOIN address pa on pa.id = qc.permanent_address_id\n" +
-                "where opportunity_id = " + opportunityId + " AND active_status_id = 1 ;";
+                "where qcs.opportunity_id = " + opportunityId + " AND active_status_id = 1 ;";
         return getJdbcTemplate().query(selectClause, new QuickCashApplicationRepository.QuickCashApplicationDetailMapper());
 
     }
