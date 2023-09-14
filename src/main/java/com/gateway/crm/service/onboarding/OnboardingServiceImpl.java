@@ -119,6 +119,7 @@ public class OnboardingServiceImpl implements OnboardingService{
                         .onboardedByOperator(operator)
                         .build();
             }
+
             log.error("event objectMapper json : "+ objectMapper.writeValueAsString(event));
             //acquiringGateway.sendMessage(objectMapper.writeValueAsString(event));
             int statusCode = gatewayService.process(event);
