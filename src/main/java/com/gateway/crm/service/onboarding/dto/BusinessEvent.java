@@ -12,6 +12,7 @@ import com.gateway.crm.dao.contract.entity.OpportunityProductMapping;
 import com.gateway.crm.dao.invitation.entity.Invitation;
 import com.gateway.crm.dao.operator.entity.Operator;
 import com.gateway.crm.dao.opportunity.entity.Opportunity;
+import com.gateway.crm.dao.quickcash.entity.QuickCashApplicationDetail;
 import lombok.Builder;
 import lombok.Value;
 
@@ -32,4 +33,5 @@ public class BusinessEvent {
     private List<OpportunityKycUpload> opportunityKycUploadList;
     private List<BankAccount> bankAccount;
     private List<AgreementPolicy> agreementPolicyList;
+    private List<QuickCashApplicationDetail> quickCashApplicationDetailList;
 }

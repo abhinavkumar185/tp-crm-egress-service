@@ -98,8 +98,6 @@ public class OnboardingServiceImpl implements OnboardingService{
                 //populated quick cash data
                 List<QuickCashApplicationDetail> quickCashApplicationDetails = quickCashService.findByOpportunityId(onboardingEventDto.getOpportunity_id());
 
-
-
                 event = BusinessEvent.builder()
                         .invitation(invitation)
                         .opportunity(opportunity)
@@ -112,6 +110,7 @@ public class OnboardingServiceImpl implements OnboardingService{
                         .opportunityKycList(opportunityKycList)
                         .opportunityKycUploadList(opportunityKycUploadList)
                         .opportunityOwnerKycList(opportunityOwnerKycList)
+                        .quickCashApplicationDetailList(quickCashApplicationDetails)
                         .build();
             }
             else{
