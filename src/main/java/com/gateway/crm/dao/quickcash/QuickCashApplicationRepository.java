@@ -34,7 +34,7 @@ public class QuickCashApplicationRepository extends JdbcDaoSupport {
                 "LEFT JOIN quick_cash_application_status qcs on qcs.quick_cash_application_id = qc.id \n" +
                 "LEFT JOIN address ca on ca.id = qc.current_address_id\n" +
                 "LEFT JOIN address pa on pa.id = qc.permanent_address_id\n" +
-                "where qcs.opportunity_id = " + opportunityId + " AND active_status_id = 1 ;";
+                "where qc.opportunity_id = " + opportunityId + " AND qc.active_status_id = 1 AND qcs.active_status_id = 1 ;";
         return getJdbcTemplate().query(selectClause, new QuickCashApplicationRepository.QuickCashApplicationDetailMapper());
 
     }
