@@ -1,12 +1,13 @@
 package com.gateway.crm.dao.quickcash;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gateway.crm.dao.quickcash.entity.QuickCashApplicationDetail;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
 import org.springframework.stereotype.Repository;
 
+import javax.activation.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
@@ -14,6 +15,9 @@ import java.util.List;
 @Log4j2
 @Repository
 public class QuickCashApplicationRepository extends JdbcDaoSupport {
+
+    @Autowired
+    public QuickCashApplicationRepository(DataSource dataSource){setDataSource(dataSource);}
 
     public List<QuickCashApplicationDetail> findByOpportunityId(Integer opportunityId) {
 
@@ -31,15 +35,12 @@ public class QuickCashApplicationRepository extends JdbcDaoSupport {
                 "LEFT JOIN address ca on ca.id = qc.current_address_id\n" +
                 "LEFT JOIN address pa on pa.id = qc.permanent_address_id\n" +
                 "where opportunity_id = " + opportunityId + " AND active_status_id = 1 ;";
-        return getJdbcTemplate().query(selectClause, new QuickCashApplicationDetailMapper());
+        return getJdbcTemplate().query(selectClause, new QuickCashApplicationRepository.QuickCashApplicationDetailMapper());
 
     }
 
     private static class QuickCashApplicationDetailMapper implements RowMapper<QuickCashApplicationDetail> {
-
-        @Override
         public QuickCashApplicationDetail mapRow(ResultSet rs, int rowNum) throws SQLException {
-            ObjectMapper mapper = new ObjectMapper();
             QuickCashApplicationDetail quickCashApplicationDetail = null;
             try {
                 quickCashApplicationDetail = QuickCashApplicationDetail.builder()
