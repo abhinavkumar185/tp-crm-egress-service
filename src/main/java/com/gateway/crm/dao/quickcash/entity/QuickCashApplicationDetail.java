@@ -38,6 +38,7 @@ public class QuickCashApplicationDetail {
     private Integer currentAddressTypeId;
     private String permanentAdressLine1;
     private String permanentAdressLine2;
+    private String permanentAdressLine3;
     private String permanentCity;
     private String permanentPostalZip;
     private String permanentState;

@@ -27,7 +27,7 @@ public class QuickCashApplicationRepository extends JdbcDaoSupport {
                 "qc.loan_borrower_id, qc.date_of_birth, ca.address_line1 as currentAddressLine1, ca.address_line2 as currentAddressLine2, ca.city as currentCity, \n" +
                 "ca.postal_zip as currentPostalZip, ca.state as currentState, ca.state_province_id as currentStateProvienceId, ca.city_id as currentCityId, \n" +
                 "ca.country_id as currentCountryId, ca.address_type_id as currentAddressTypeId, pa.address_line1 as permanentAddressLine1, \n" +
-                "pa.address_line2 as permanentAddressLine2, pa.city as permanentCity, pa.postal_zip as permanentPostalZip, pa.state as permanentState, \n" +
+                "pa.address_line2 as permanentAddressLine2, pa.address_line3 as permanentAddressLine3,pa.city as permanentCity, pa.postal_zip as permanentPostalZip, pa.state as permanentState, \n" +
                 "pa.state_province_id as permanentStateProvienceId, pa.city_id as permanentCityId, \n" +
                 "pa.country_id as permanentCountryId, qcs.loan_provider_id, qcs.reason,  pa.address_type_id as permanentAddressTypeId\n" +
                 "FROM quick_cash_application qc \n" +
@@ -71,6 +71,7 @@ public class QuickCashApplicationRepository extends JdbcDaoSupport {
                         .currentAddressTypeId(rs.getInt("currentAddressTypeId"))
                         .permanentAdressLine1(rs.getString("permanentAddressLine1"))
                         .permanentAdressLine2(rs.getString("permanentAddressLine2"))
+                        .permanentAdressLine3(rs.getString("permanentAddressLine3"))
                         .permanentCity(rs.getString("permanentCity"))
                         .permanentCountryId(rs.getInt("permanentCountryId"))
                         .permanentPostalZip(rs.getString("permanentPostalZip"))
