@@ -48,6 +48,7 @@ public class QuickCashApplicationDetail {
     private Integer loanProviderId;
     private String reason;
     private String bankName;
+    private Integer bankId;
     private String ifsc;
 
 

@@ -24,7 +24,7 @@ public class QuickCashApplicationRepository extends JdbcDaoSupport {
         //String selectClause = "SELECT * FROM quick_cash_application qc LEFT JOIN quick_cash_application_status on qcs.quick_cash_application_id = qc.id where opportunity_id = " + opportunityId + " AND active_status_id = 1 ";
         String selectClause = "SELECT qc.loan_stage_id, qc.borrower_first_name, qc.borrower_last_name, qc.father_first_name, qc.father_last_name, qc.mobile,\n" +
                 "qc.pan, qc.aadhaar, qc.gender, qc.cibil_consent, qc.residence_type,qc.bank_name as bankName, qc.ifsc as ifsc, qc.residence_type, qc.residence_age, qc.amount, qc.loan_tenure, qc.loan_application_id,\n" +
-                "qc.loan_borrower_id, qc.date_of_birth, qc.bank_name as bankName,qc.ifsc as ifsc,ca.address_line1 as currentAddressLine1, ca.address_line2 as currentAddressLine2, ca.city as currentCity, \n" +
+                "qc.loan_borrower_id, qc.date_of_birth, qc.bank_name as bankName,qc.bank_id as bankId,qc.ifsc as ifsc,ca.address_line1 as currentAddressLine1, ca.address_line2 as currentAddressLine2, ca.city as currentCity, \n" +
                 "ca.postal_zip as currentPostalZip, ca.state as currentState, ca.state_province_id as currentStateProvienceId, ca.city_id as currentCityId, \n" +
                 "ca.country_id as currentCountryId, ca.address_type_id as currentAddressTypeId, pa.address_line1 as permanentAddressLine1, \n" +
                 "pa.address_line2 as permanentAddressLine2, pa.city as permanentCity, pa.postal_zip as permanentPostalZip, pa.state as permanentState, \n" +
@@ -82,6 +82,7 @@ public class QuickCashApplicationRepository extends JdbcDaoSupport {
                         .reason(rs.getString("reason"))
                         .ifsc(rs.getString("ifsc"))
                         .bankName(rs.getString("bankName"))
+                        .bankId(rs.getInt("bankId"))
                         .loanTenure(rs.getInt("loan_tenure"))
                         .build();
 
