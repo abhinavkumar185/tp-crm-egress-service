@@ -11,6 +11,7 @@ public class OpportunityKycUpload {
 	private Integer opportunityKycId;
 	private Integer cpdtId;
 	private String fileName;
+	private String password;
 	private Integer uploadedById;
 	private Integer activeStatusId;
 	private Integer channelId;

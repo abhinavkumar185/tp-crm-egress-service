@@ -36,6 +36,7 @@ public class OpportunityKycUploadRepository extends JdbcDaoSupport {
 				                                            .fileName(rs.getString("file_name"))
 				                                            .uploadedById(rs.getInt("uploaded_by_id"))
 				                                            .activeStatusId(rs.getInt("active_status_id"))
+															.password(rs.getString("password"))
 				                                            .channelId(rs.getInt("channel_id"))
 				
 				.build();
