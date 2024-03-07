@@ -24,7 +24,7 @@ public class InvitationRepository  extends JdbcDaoSupport {
         String selectClause = "SELECT " + syncId + " as syncId , i.id, i.name, i.first_name, i.last_name, i.email, i.mobile_number," +
                 " i.address_line1, i.address_line2, " +
                 " i.postal_zip, i.state_province_id, i.city,i.isd_code, i.country_id, opl.passcode, " +
-                " eorm.role_nesting_id, o.uid, p.uid as clientId" +
+                " eorm.role_nesting_id, o.uid, p.uid as clientId, i.created_on as createdOn" +
                 "  FROM invitation i left join " +
                 " entity_operator_role_mapping eorm on i.partner_id = eorm.partner_id and eorm.active_status_id=1 " +
                 " left join operator o on eorm.operator_id = o.id " +
@@ -55,6 +55,7 @@ public class InvitationRepository  extends JdbcDaoSupport {
                     .roleNestingId(rs.getString("role_nesting_id") != null ? rs.getInt("role_nesting_id") : null)
                     .operatorUid(rs.getString("uid") != null ? rs.getString("uid") : null)
                     .clientId(rs.getString("clientId") != null ? rs.getString("clientId") : null)
+                    .createdOn(rs.getDate("createdOn") != null ? rs.getDate("createdOn") : null)
                     .build();
 
             return invitation;

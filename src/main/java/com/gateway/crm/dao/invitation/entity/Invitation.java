@@ -3,6 +3,8 @@ package com.gateway.crm.dao.invitation.entity;
 import lombok.Builder;
 import lombok.Data;
 
+import java.util.Date;
+
 @Data
 @Builder(toBuilder = true)
 public class Invitation {
@@ -25,4 +27,5 @@ public class Invitation {
     private String operatorUid;
     private String passcode;
     private String clientId;
+    private Date createdOn;
 }
