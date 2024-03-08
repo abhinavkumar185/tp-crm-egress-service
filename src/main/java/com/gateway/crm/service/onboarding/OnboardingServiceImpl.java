@@ -94,7 +94,6 @@ public class OnboardingServiceImpl implements OnboardingService{
                 List<OpportunityKycUpload> opportunityKycUploadList = opportunityKycUploadService.findByOpportunityId(onboardingEventDto.getOpportunity_id());
                 List<OpportunityOwnerKyc> opportunityOwnerKycList = opportunityOwnerKycService.findByOpportunityId(onboardingEventDto.getOpportunity_id());
                 //operator.setUid();
-
                 //populated quick cash data
                 List<QuickCashApplicationDetail> quickCashApplicationDetails = quickCashService.findByOpportunityId(onboardingEventDto.getOpportunity_id());
 
